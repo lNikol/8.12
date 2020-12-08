@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "bank.h"
 Bank::Bank() {
 	Name = "";
@@ -9,7 +11,7 @@ Bank::Bank() {
 };
 
 Bank::Bank(std::string fName, std::string fSurName, std::string fPersonalNumber,
-	unsigned int fBalanceBYN, unsigned int fBalanceUSD) {
+	float fBalanceBYN, float fBalanceUSD) {
 	Name = fName;
 	SurName = fSurName;
 	BalanceBYN = fBalanceBYN;
@@ -19,17 +21,17 @@ Bank::Bank(std::string fName, std::string fSurName, std::string fPersonalNumber,
 }
 void Bank::SetName(std::string fName) { Name = fName; }
 void Bank::SetSurName(std::string fSurName) { SurName = fSurName; }
-void Bank::SetBalanceBYN(unsigned int fBalanceBYN) { BalanceBYN = fBalanceBYN; }
+void Bank::SetBalanceBYN(float fBalanceBYN) { BalanceBYN = fBalanceBYN; }
 void Bank::SetPersonalNumber(std::string fPersonalNumber) { PersonalNumber = fPersonalNumber; }
 std::string Bank::GetName() { return Name; }
 std::string Bank::GetSurName() { return SurName; }
-unsigned int Bank::GetBalanceBYN() { return BalanceBYN; }
+float Bank::GetBalanceBYN() { return BalanceBYN; }
 std::string Bank::GetPersonalNumber() { return PersonalNumber; }
 
 
 
-void Bank::SetBalanceUSD(unsigned int fBalanceUSD) { BalanceUSD = fBalanceUSD; };
-unsigned int Bank::GetBalanceUSD() { return BalanceUSD; }
+void Bank::SetBalanceUSD(float fBalanceUSD) { BalanceUSD = fBalanceUSD; };
+float Bank::GetBalanceUSD() { return BalanceUSD; }
 
 
 void Bank::print() {
@@ -40,14 +42,15 @@ void Bank::print() {
 		<< " BalanceBYN: " << BalanceBYN << std::endl 
 		<< std::endl << std::endl;
 }
-void Bank::AddBalanceBYN(unsigned int fBYN) {
-	BalanceBYN += fBYN;
-}
+
 void Bank::AddPersonalNumber(std::string fPS) {
 	PersonalNumber += fPS;
 }
 
-void Bank::RemoveBalanceBYN(unsigned int RemBYN) {
+void Bank::AddBalanceBYN(float fBYN) {
+	BalanceBYN += fBYN;
+}
+void Bank::RemoveBalanceBYN(float RemBYN) {
 	if (RemBYN < BalanceBYN) {
 		BalanceBYN -= RemBYN;
 	}
@@ -55,15 +58,35 @@ void Bank::RemoveBalanceBYN(unsigned int RemBYN) {
 		std::cout << "Суммы " <<RemBYN<< " нету на счете " << SurName << ' ' << Name << std::endl;
 	}
 }
-void Bank::AddBalanceUSD(unsigned int fUSD) {
+void Bank::AddBalanceUSD(float fUSD) {
 	BalanceUSD += fUSD;
 }
 
-void Bank::RemoveBalanceUSD(unsigned int RemUSD) {
+void Bank::RemoveBalanceUSD(float RemUSD) {
 	if (RemUSD < BalanceUSD) {
 		BalanceUSD -= RemUSD;
 	}
 	else {
 		std::cout << "Суммы " << RemUSD << " нету на счете " << SurName << ' ' << Name << std::endl;
+	}
+}
+
+
+void Bank::buyUSDfromBYN(float fUSD) {
+	std::ifstream inputFile;
+	inputFile.open("Course.txt");
+	if (inputFile.is_open()) {
+		std::string str;
+		inputFile >> str;
+		int USDtoBYN = stoi(str);
+		int summToRemoveBYN = fUSD*USDtoBYN;
+		if (summToRemoveBYN < BalanceBYN) {
+			this -> RemoveBalanceUSD(summToRemoveBYN);
+			this -> AddBalanceUSD(fUSD);
+		}
+		
+	}
+	else {
+		std::cout << "Error, can't open file" << std::endl;
 	}
 }

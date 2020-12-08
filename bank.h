@@ -5,13 +5,13 @@ private:
 	std::string Name;
 	std::string SurName;
 	std::string PersonalNumber;
-	unsigned int BalanceBYN;
-	unsigned int BalanceUSD;
+	float BalanceBYN;
+	float BalanceUSD;
 public:
 	Bank();
 
 	//Конструктор с параметарми
-	Bank(std::string, std::string, std::string, unsigned int,unsigned int);
+	Bank(std::string, std::string, std::string, float, float);
 	void SetName(std::string);
 	void SetSurName(std::string);
 	void SetPersonalNumber(std::string);
@@ -22,15 +22,15 @@ public:
 	void AddPersonalNumber(std::string);
 	
 
-	void SetBalanceBYN(unsigned int);
-	unsigned int GetBalanceBYN();
-	void AddBalanceBYN(unsigned int);
-	void RemoveBalanceBYN(unsigned int);
+	void SetBalanceBYN(float);
+	float GetBalanceBYN();
+	void AddBalanceBYN(float);
+	void RemoveBalanceBYN(float);
 
 
-	void SetBalanceUSD(unsigned int);
-	unsigned int GetBalanceUSD();
-	void AddBalanceUSD(unsigned int);
-	void RemoveBalanceUSD(unsigned int);
-
+	void SetBalanceUSD(float);
+	float GetBalanceUSD();
+	void AddBalanceUSD(float);
+	void RemoveBalanceUSD(float);
+	void buyUSDfromBYN(float);
 };

@@ -9,10 +9,13 @@
 using namespace std;
 int main() {
 	setlocale(LC_ALL, "Russian");
-	Bank user1("Alexandr", "Gleb", "aa1bb45",0,0);
+	Bank user1("Alexandr", "Gleb", "aa1bb45",100,50);
 	user1.print();
-	user1.AddBalanceUSD(3);
-	user1.AddBalanceBYN(10);
+	user1.RemoveBalanceUSD(10);
+	user1.print();
+	user1.RemoveBalanceBYN(10);
+	user1.print();
+	user1.buyUSDfromBYN(1);
 	user1.print();
 
 	//Bank user2("Pavel", "Krytov", 100, "bb4kk77");
@@ -21,16 +24,6 @@ int main() {
 	//user2.RemoveBalance(99);
 	//user2.AddPersonalNumber("cc34zzm75");
 	//user2.print();
-	char buff[50]; // буфер промежуточного хранения считываемого из файла текста
-	ifstream fin("Source.txt"); // открыли файл для чтения
-
-	fin >> buff; // считали первое слово из файла
-	cout << buff << endl; // напечатали это слово
-
-	fin.getline(buff, 50); // считали строку из файла
-	fin.close(); // закрываем файл
-	cout << buff << endl; // напечатали эту строку
-
-
+	
 	return 0;
 }
