@@ -9,13 +9,13 @@
 using namespace std;
 int main() {
 	setlocale(LC_ALL, "Russian");
-	Bank user1("Alexandr", "Gleb", "aa1bb45",100,50);
+	Bank user1("Alexandr", "Gleb", "aa1bb45",100.0,50.0);
 	user1.print();
-	user1.RemoveBalanceUSD(10);
+	user1.RemoveBalanceUSD(10.0);
 	user1.print();
-	user1.RemoveBalanceBYN(10);
+	user1.RemoveBalanceBYN(10.0);
 	user1.print();
-	user1.buyUSDfromBYN(1);
+	user1.buyUSDfromBYN(15.0);
 	user1.print();
 
 	//Bank user2("Pavel", "Krytov", 100, "bb4kk77");

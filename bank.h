@@ -23,13 +23,13 @@ public:
 	
 
 	void SetBalanceBYN(float);
-	float GetBalanceBYN();
+	float GetBalanceBYN(float);
 	void AddBalanceBYN(float);
 	void RemoveBalanceBYN(float);
 
 
 	void SetBalanceUSD(float);
-	float GetBalanceUSD();
+	float GetBalanceUSD(float);
 	void AddBalanceUSD(float);
 	void RemoveBalanceUSD(float);
 	void buyUSDfromBYN(float);
